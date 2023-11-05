@@ -1,0 +1,10 @@
+name: AutoNPC
+version: '${project.version}'
+main: win.oreo.autonpc.AutoNPC
+authors: [oreo (superoreo)]
+description: AutoNPC Plugin for mc 1.12.2
+website: github.com/superoreoooooo
+commands:
+  npc:
+    aliases:
+      - n
