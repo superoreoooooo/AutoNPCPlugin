@@ -45,7 +45,7 @@ public class npcListener implements Listener {
                         for (int i = 0; i < 4; i++) {
                             TextComponent msg = new TextComponent("Quest" + (i + 1) + " : " + quests.get(i).getName());
                             msg.setColor(ChatColor.AQUA);
-                            System.out.println(quests.get(i).getId().toString());
+                            player.sendMessage(quests.get(i).getId().toString());
                             msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + quests.get(i).getId().toString()));
                         }
                     }
