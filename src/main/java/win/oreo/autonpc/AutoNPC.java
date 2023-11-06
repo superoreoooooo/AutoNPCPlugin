@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.command.npcCommand;
 import win.oreo.autonpc.listener.PlayerMovementListener;
+import win.oreo.autonpc.listener.npcListener;
 import win.oreo.autonpc.manager.YmlManager;
 import win.oreo.autonpc.npc.NPC;
 import win.oreo.autonpc.util.NPCUtil;
@@ -47,6 +48,7 @@ public final class AutoNPC extends JavaPlugin {
         run();
 
         Bukkit.getPluginManager().registerEvents(new PlayerMovementListener(), this);
+        Bukkit.getPluginManager().registerEvents(new npcListener(), this);
     }
 
     @Override

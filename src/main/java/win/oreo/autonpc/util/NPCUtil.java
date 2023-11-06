@@ -11,4 +11,13 @@ public class NPCUtil {
     public NPCUtil() {
         npcSet = new HashSet<>();
     }
+
+    public static NPC getNPC(String name) {
+        for (NPC npc : npcSet) {
+            if (npc.getName().equals(name)) {
+                return npc;
+            }
+        }
+        return null;
+    }
 }
