@@ -14,6 +14,7 @@ import win.oreo.autonpc.npc.quest.Quest;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class npcCommand implements CommandExecutor {
@@ -41,14 +42,28 @@ public class npcCommand implements CommandExecutor {
                                             String reward = yaml.getString("quests." + num + ".reward");
                                             String story = yaml.getString("quests." + num + ".story");
 
-                                            quests.set(Integer.parseInt(num), new Quest(qname, goal, reward, story));
+                                            quests.add(new Quest(qname, goal, reward, story));
                                         }
 
-                                        player.sendMessage(name + " // " + npcstory + " // " + quests);
+                                        player.sendMessage(name + " // " + npcstory);
+                                        quests.forEach(quest -> player.sendMessage(quest.getName()));
+                                        double x = new Random().nextDouble(-10, 10);
+                                        double z = new Random().nextDouble(-10, 10);
+
+                                        NPC npc = new NPC(UUID.randomUUID(), name);
+
+                                        npc.setStory(npcstory);
+                                        npc.setQuestList(quests);
+
+                                        if (npc.spawn(x, player.getLocation().getY() + 1, z)) {
+                                            player.sendMessage("SUCCESS!");
+                                        }
                                     }
                                 }
                             }
                         }
+                    } case "summon" -> {
+
                     }
                 }
 

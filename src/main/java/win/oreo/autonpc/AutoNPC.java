@@ -1,8 +1,10 @@
 package win.oreo.autonpc;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.command.npcCommand;
+import win.oreo.autonpc.listener.PlayerMovementListener;
 import win.oreo.autonpc.manager.YmlManager;
 import win.oreo.autonpc.npc.NPC;
 import win.oreo.autonpc.util.NPCUtil;
@@ -41,6 +43,10 @@ public final class AutoNPC extends JavaPlugin {
         getCommand("npc").setExecutor(new npcCommand());
         this.ymlManager = new YmlManager(this);
         NPCUtil util = new NPCUtil();
+        checkForClasses();
+        run();
+
+        Bukkit.getPluginManager().registerEvents(new PlayerMovementListener(), this);
     }
 
     @Override
@@ -51,5 +57,13 @@ public final class AutoNPC extends JavaPlugin {
                 npc.removePlayer();
             }
         }
+    }
+
+    public void run() {
+        Bukkit.getScheduler().runTaskTimer(JavaPlugin.getPlugin(this.getClass()), () -> {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                player.spigot().setCollidesWithEntities(false);
+            }
+        }, 0, 20);
     }
 }
