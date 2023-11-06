@@ -52,6 +52,7 @@ public class npcListener implements Listener {
                             player.spigot().sendMessage(msg);
                         }
                     }
+                    player.sendMessage("==========[" + npc.getName() + "]==========");
                 }
             }
         }

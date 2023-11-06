@@ -76,12 +76,14 @@ public class npcCommand implements CommandExecutor {
                                             if (q.getId().equals(questID)) {
                                                 quest = q;
                                             }
-                                            if (quest != null) {
-                                                player.sendMessage("퀘스트 이름 : " + quest.getName());
-                                                player.sendMessage("퀘스트 스토리 : " + quest.getStory());
-                                                player.sendMessage("퀘스트 목표 : " + quest.getGoal());
-                                                player.sendMessage("퀘스트 보상 : " + quest.getReward());
-                                            }
+                                        }
+                                        if (quest != null) {
+                                            player.sendMessage("==========[" + npc.getName() + "]==========");
+                                            player.sendMessage("퀘스트 이름 : " + quest.getName());
+                                            player.sendMessage("퀘스트 스토리 : " + quest.getStory());
+                                            player.sendMessage("퀘스트 목표 : " + quest.getGoal());
+                                            player.sendMessage("퀘스트 보상 : " + quest.getReward());
+                                            player.sendMessage("==========[" + npc.getName() + "]==========");
                                         }
                                     }
                                 }
