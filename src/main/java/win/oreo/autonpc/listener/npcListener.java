@@ -1,5 +1,8 @@
 package win.oreo.autonpc.listener;
 
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -9,6 +12,7 @@ import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.AutoNPC;
 import win.oreo.autonpc.npc.NPC;
+import win.oreo.autonpc.npc.quest.Quest;
 import win.oreo.autonpc.util.NPCUtil;
 
 import java.util.ArrayList;
@@ -28,24 +32,21 @@ public class npcListener implements Listener {
         if (coolDown.contains(player)) return;
         delay(player);
 
-        if (!e.getPlayer().isSneaking()) {
-            if (e.getRightClicked().getType().equals(EntityType.PLAYER)) {
-                if (e.getRightClicked().hasMetadata("npc")) {
-                    String npcMetadata = e.getRightClicked().getMetadata("npc").get(0).asString();
-                }
-            }
-        }
-        else {
-            if (e.getRightClicked().getType().equals(EntityType.PLAYER)) {
-                if (e.getRightClicked().hasMetadata("npc")) {
-                    String npcMetadata = e.getRightClicked().getMetadata("npc").get(0).asString();
-
-                    NPC npc = NPCUtil.getNPC(npcMetadata);
-                    if (npc != null) {
-                        if (!e.getPlayer().isSneaking()) {
-                            player.sendMessage("NPC's story : " + npc.getStory());
-                        } else {
-                            player.sendMessage("asdf");
+        if (e.getRightClicked().getType().equals(EntityType.PLAYER)) {
+            if (e.getRightClicked().hasMetadata("npc")) {
+                String npcMetadata = e.getRightClicked().getMetadata("npc").get(0).asString();
+                NPC npc = NPCUtil.getNPC(npcMetadata);
+                if (npc != null) {
+                    player.sendMessage("==========[" + npc.getName() + "]==========");
+                    if (e.getPlayer().isSneaking()) {
+                        player.sendMessage("NPC's story : " + npc.getStory());
+                    } else { //quest area
+                        List<Quest> quests = npc.getQuestList();
+                        for (int i = 0; i < 4; i++) {
+                            TextComponent msg = new TextComponent("Quest" + (i + 1) + " : " + quests.get(i).getName());
+                            msg.setColor(ChatColor.AQUA);
+                            System.out.println(quests.get(i).getId().toString());
+                            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + quests.get(i).getId().toString()));
                         }
                     }
                 }

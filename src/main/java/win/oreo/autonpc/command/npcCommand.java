@@ -45,8 +45,8 @@ public class npcCommand implements CommandExecutor {
                                             quests.add(new Quest(qname, goal, reward, story));
                                         }
 
-                                        player.sendMessage(name + " // " + npcstory);
-                                        quests.forEach(quest -> player.sendMessage(quest.getName()));
+                                        //player.sendMessage(name + " // " + npcstory);
+                                        //quests.forEach(quest -> player.sendMessage(quest.getName()));
                                         double x = new Random().nextDouble(-10, 10);
                                         double z = new Random().nextDouble(-10, 10);
 
