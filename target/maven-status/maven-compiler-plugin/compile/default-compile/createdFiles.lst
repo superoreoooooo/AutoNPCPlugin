@@ -1,3 +1,4 @@
+win\oreo\autonpc\manager\YmlManager.class
 win\oreo\autonpc\AutoNPC.class
 win\oreo\autonpc\listener\npcListener.class
 win\oreo\autonpc\command\npcCommand.class

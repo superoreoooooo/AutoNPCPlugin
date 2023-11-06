@@ -3,6 +3,7 @@ package win.oreo.autonpc;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.command.npcCommand;
+import win.oreo.autonpc.manager.YmlManager;
 import win.oreo.autonpc.npc.NPC;
 import win.oreo.autonpc.util.NPCUtil;
 
@@ -11,6 +12,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public final class AutoNPC extends JavaPlugin {
+    public YmlManager ymlManager;
     private boolean usesPaper = false;
     private boolean updatedPaper = false;
 
@@ -37,6 +39,7 @@ public final class AutoNPC extends JavaPlugin {
     @Override
     public void onEnable() {
         getCommand("npc").setExecutor(new npcCommand());
+        this.ymlManager = new YmlManager(this);
     }
 
     @Override
