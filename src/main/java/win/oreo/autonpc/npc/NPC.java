@@ -18,6 +18,7 @@ import org.bukkit.event.player.*;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.AutoNPC;
+import win.oreo.autonpc.npc.quest.Quest;
 import win.oreo.autonpc.util.NPCUtil;
 import win.oreo.autonpc.util.Paper_v12R1;
 
@@ -29,6 +30,8 @@ import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -39,7 +42,7 @@ public class NPC {
     private String value;
     private String signature;
     private String story;
-    private
+    private List<Quest> questList = new ArrayList<>();
 
     public NPC(UUID uuid, String name, String value, String signature) {
         this.uuid = uuid;
@@ -94,6 +97,22 @@ public class NPC {
     public void removePlayer() {
         removePlayer(this);
         NPCUtil.npcSet.remove(this);
+    }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public List<Quest> getQuestList() {
+        return questList;
+    }
+
+    public void setQuestList(List<Quest> questList) {
+        this.questList = questList;
     }
 
     private static EntityPlayer spawn(NPC npc, double x, double y, double z) {

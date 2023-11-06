@@ -4,9 +4,13 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import win.oreo.autonpc.AutoNPC;
 import win.oreo.autonpc.npc.NPC;
 
+import java.io.File;
 import java.util.UUID;
 
 public class npcCommand implements CommandExecutor {
@@ -14,6 +18,26 @@ public class npcCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             if (args.length > 0) {
+                switch (args[0]) {
+                    case "load" -> {
+                        File dir = JavaPlugin.getPlugin(AutoNPC.class).getDataFolder();
+                        File[] files = dir.listFiles();
+
+                        if (files != null) {
+                            for (File file : files) {
+                                if (file.isFile()) {
+                                    if (!file.getName().contains("data")) {
+                                        YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
+
+                                        String name = yaml.getString("name");
+                                        String story = yaml.getString("npcstory");
+                                        System.out.printf("%s : %s", name, story);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 Location loc = player.getLocation();
                 NPC.summon(args[0], loc.getX(), loc.getY(), loc.getZ(), UUID.randomUUID(),
                         "ewogICJ0aW1lc3RhbXAiIDogMTY3MTUzMDk2MzU1NCwKICAicHJvZmlsZUlkIiA6ICI4YmU1NzgzOGY0YzY0ODU2Yjc5OTcwNTFkYjU1ODBjZSIsCiAgInByb2ZpbGVOYW1lIiA6ICJJc1NoZV8iLAogICJzaWduYXR1cmVSZXF1aXJlZCIgOiB0cnVlLAogICJ0ZXh0dXJlcyIgOiB7CiAgICAiU0tJTiIgOiB7CiAgICAgICJ1cmwiIDogImh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2I1N2Y5YThjMTNhMzY0ODg4N2YwYjdhZTA4MWRiNDZhZDRkNGNmZmQ0MmRmZTVkN2JkZTRjMmUxYWQ4N2ZkYiIsCiAgICAgICJtZXRhZGF0YSIgOiB7CiAgICAgICAgIm1vZGVsIiA6ICJzbGltIgogICAgICB9CiAgICB9CiAgfQp9",
