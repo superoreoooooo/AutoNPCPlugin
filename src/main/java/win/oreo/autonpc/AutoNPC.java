@@ -3,6 +3,12 @@ package win.oreo.autonpc;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.command.npcCommand;
+import win.oreo.autonpc.npc.NPC;
+import win.oreo.autonpc.util.NPCUtil;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public final class AutoNPC extends JavaPlugin {
     private boolean usesPaper = false;
@@ -35,6 +41,9 @@ public final class AutoNPC extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        Set<NPC> cp = new HashSet<>(NPCUtil.npcSet);
+        for (NPC npc : cp) {
+            npc.removePlayer();
+        }
     }
 }
