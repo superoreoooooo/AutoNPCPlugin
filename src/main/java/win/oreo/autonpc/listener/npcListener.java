@@ -2,6 +2,8 @@ package win.oreo.autonpc.listener;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
@@ -45,8 +47,9 @@ public class npcListener implements Listener {
                         for (int i = 0; i < 4; i++) {
                             TextComponent msg = new TextComponent("Quest" + (i + 1) + " : " + quests.get(i).getName());
                             msg.setColor(ChatColor.AQUA);
-                            player.sendMessage(quests.get(i).getId().toString());
-                            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + quests.get(i).getId().toString()));
+                            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + npc.getName() + quests.get(i).getId().toString()));
+                            msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("퀘스트 " + quests.get(i).getName() + "을 시작합니다!").color(ChatColor.GOLD).create()));
+                            player.spigot().sendMessage(msg);
                         }
                     }
                 }

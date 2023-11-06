@@ -10,8 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.AutoNPC;
 import win.oreo.autonpc.npc.NPC;
 import win.oreo.autonpc.npc.quest.Quest;
+import win.oreo.autonpc.util.NPCUtil;
 
 import java.io.File;
+import java.rmi.MarshalException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -62,8 +64,29 @@ public class npcCommand implements CommandExecutor {
                                 }
                             }
                         }
-                    } case "summon" -> {
-
+                    } case "quest" -> {
+                        if (args.length >= 4) {
+                            switch (args[1]) {
+                                case "start" -> {
+                                    NPC npc = NPCUtil.getNPC(args[2]);
+                                    if (npc != null) {
+                                        UUID questID = UUID.fromString(args[3]);
+                                        Quest quest = null;
+                                        for (Quest q : npc.getQuestList()) {
+                                            if (q.getId().equals(questID)) {
+                                                quest = q;
+                                            }
+                                            if (quest != null) {
+                                                player.sendMessage("퀘스트 이름 : " + quest.getName());
+                                                player.sendMessage("퀘스트 스토리 : " + quest.getStory());
+                                                player.sendMessage("퀘스트 목표 : " + quest.getGoal());
+                                                player.sendMessage("퀘스트 보상 : " + quest.getReward());
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
