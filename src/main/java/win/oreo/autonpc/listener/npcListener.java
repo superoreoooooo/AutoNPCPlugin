@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.AutoNPC;
 import win.oreo.autonpc.npc.NPC;
@@ -39,7 +40,7 @@ public class npcListener implements Listener {
                 String npcMetadata = e.getRightClicked().getMetadata("npc").get(0).asString();
                 NPC npc = NPCUtil.getNPC(npcMetadata);
                 if (npc != null) {
-                    player.sendMessage("==========[" + npc.getName() + "]==========");
+                    player.sendMessage("\n\n\n\n\n\n\n==========[" + npc.getName() + "]==========");
                     if (e.getPlayer().isSneaking()) {
                         player.sendMessage("NPC's story : " + npc.getStory());
                     } else { //quest area

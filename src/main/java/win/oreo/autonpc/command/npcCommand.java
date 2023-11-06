@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import win.oreo.autonpc.AutoNPC;
 import win.oreo.autonpc.npc.NPC;
 import win.oreo.autonpc.npc.quest.Quest;
+import win.oreo.autonpc.npc.quest.QuestUtil;
 import win.oreo.autonpc.util.NPCUtil;
 
 import java.io.File;
@@ -32,9 +33,12 @@ public class npcCommand implements CommandExecutor {
                             for (File file : files) {
                                 if (file.isFile()) {
                                     if (!file.getName().contains("data") && file.getName().contains(".yml")) {
+                                        System.out.println(file.getName());
                                         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
 
                                         String name = yaml.getString("name");
+
+
                                         String npcstory = yaml.getString("npcstory");
                                         List<Quest> quests = new ArrayList<>();
 
@@ -49,8 +53,8 @@ public class npcCommand implements CommandExecutor {
 
                                         //player.sendMessage(name + " // " + npcstory);
                                         //quests.forEach(quest -> player.sendMessage(quest.getName()));
-                                        double x = new Random().nextDouble(-10, 10);
-                                        double z = new Random().nextDouble(-10, 10);
+                                        double x = new Random().nextDouble(-6, 6);
+                                        double z = new Random().nextDouble(-6, 6);
 
                                         NPC npc = new NPC(UUID.randomUUID(), name);
 
@@ -78,12 +82,13 @@ public class npcCommand implements CommandExecutor {
                                             }
                                         }
                                         if (quest != null) {
-                                            player.sendMessage("==========[" + npc.getName() + "]==========");
+                                            player.sendMessage("\n\n\n\n\n\n\n==========[" + npc.getName() + "]==========");
                                             player.sendMessage("퀘스트 이름 : " + quest.getName());
                                             player.sendMessage("퀘스트 스토리 : " + quest.getStory());
                                             player.sendMessage("퀘스트 목표 : " + quest.getGoal());
                                             player.sendMessage("퀘스트 보상 : " + quest.getReward());
                                             player.sendMessage("==========[" + npc.getName() + "]==========");
+                                            QuestUtil.playerQuestHashMap.put(player, quest);
                                         }
                                     }
                                 }
