@@ -47,7 +47,7 @@ public class npcListener implements Listener {
                         for (int i = 0; i < 4; i++) {
                             TextComponent msg = new TextComponent("Quest" + (i + 1) + " : " + quests.get(i).getName());
                             msg.setColor(ChatColor.AQUA);
-                            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + npc.getName() + " " + quests.get(i).getId().toString()));
+                            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/npc quest start " + npc.getUUID() + " " + quests.get(i).getId().toString()));
                             msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("퀘스트 " + quests.get(i).getName() + "을(를) 시작합니다!").color(ChatColor.GOLD).create()));
                             player.spigot().sendMessage(msg);
                         }

@@ -68,7 +68,7 @@ public class npcCommand implements CommandExecutor {
                         if (args.length >= 4) {
                             switch (args[1]) {
                                 case "start" -> {
-                                    NPC npc = NPCUtil.getNPC(args[2]);
+                                    NPC npc = NPCUtil.getNPC(UUID.fromString(args[2]));
                                     if (npc != null) {
                                         UUID questID = UUID.fromString(args[3]);
                                         Quest quest = null;
