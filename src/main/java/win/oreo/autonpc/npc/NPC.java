@@ -38,6 +38,8 @@ public class NPC {
     private EntityPlayer entityPlayer;
     private String value;
     private String signature;
+    private String story;
+    private
 
     public NPC(UUID uuid, String name, String value, String signature) {
         this.uuid = uuid;
