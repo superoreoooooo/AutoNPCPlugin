@@ -40,13 +40,16 @@ public final class AutoNPC extends JavaPlugin {
     public void onEnable() {
         getCommand("npc").setExecutor(new npcCommand());
         this.ymlManager = new YmlManager(this);
+        NPCUtil util = new NPCUtil();
     }
 
     @Override
     public void onDisable() {
-        Set<NPC> cp = new HashSet<>(NPCUtil.npcSet);
-        for (NPC npc : cp) {
-            npc.removePlayer();
+        if (NPCUtil.npcSet != null || NPCUtil.npcSet.size() != 0) {
+            Set<NPC> cp = new HashSet<>(NPCUtil.npcSet);
+            for (NPC npc : cp) {
+                npc.removePlayer();
+            }
         }
     }
 }

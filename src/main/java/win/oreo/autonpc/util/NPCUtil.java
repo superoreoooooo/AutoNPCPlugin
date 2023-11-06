@@ -6,5 +6,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class NPCUtil {
-    public static Set<NPC> npcSet = new HashSet<>();
+    public static Set<NPC> npcSet;
+
+    public NPCUtil() {
+        npcSet = new HashSet<>();
+    }
 }
