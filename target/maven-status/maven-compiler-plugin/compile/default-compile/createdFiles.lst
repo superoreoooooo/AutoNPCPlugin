@@ -1,10 +1,11 @@
+win\oreo\autonpc\command\npcCommand.class
+win\oreo\autonpc\npc\NPC.class
+win\oreo\autonpc\util\Paper_v12R1.class
 win\oreo\autonpc\manager\YmlManager.class
 win\oreo\autonpc\AutoNPC.class
 win\oreo\autonpc\npc\quest\Quest.class
 win\oreo\autonpc\listener\npcListener.class
 win\oreo\autonpc\npc\quest\QuestUtil.class
-win\oreo\autonpc\command\npcCommand.class
-win\oreo\autonpc\npc\NPC.class
+win\oreo\autonpc\npc\quest\QuestUtil$1.class
 win\oreo\autonpc\listener\PlayerMovementListener.class
 win\oreo\autonpc\util\NPCUtil.class
-win\oreo\autonpc\util\Paper_v12R1.class
